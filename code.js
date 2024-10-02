@@ -1,28 +1,40 @@
-// function depthFirstSearch(graph, startNode, targetNode) {
-//     return [];
-// }
-
-
-// Testing my test code file setup
-function binarySearch(list, element) {
-    let left = 0;
-    let right = list.length - 1; 
-
-    while (left <= right) {
-        // Calculate middle index
-        let middle = Math.floor((left + right) / 2); 
-
-        // Compare middle element with the target element. I also added the while loop to give the index of the first appearance of the target element
-        if (list[middle] === element) {
-            while(list[middle] === element){
-                middle--;
-            }
-            return middle + 1; 
-        } else if (list[middle] < element) {
-            left = middle + 1; 
-        } else {
-            right = middle -1; 
+function depthFirstSearch(graph, startNode, targetNode) { // note that graph will be an adjacency list
+    let visited = [] 
+    
+    function depthFirstHelp(node){
+        if (visited.includes(node)) return false;
+        if (node === targetNode) return true;
+        
+        visited.push(node);
+        for(let i = 0; i < graph[node].length; i++){
+            if(!visited.includes(grap[node][i]))
+            depthFirstHelp(graph[node][i]);
         }
+        console.log(visited)
+        visited.pop(); // pop it because the target wasn;t found on it's path
+        return visited;
     }
-    return -1;
+    
+    let returnPath = depthFirstHelp(graph, startNode, targetNode);
+    return returnPath;
 }
+
+// Example graph
+const graph3 = [
+    [2, 3, 6],
+    [3],
+    [0],
+    [0, 1, 7],
+    [],
+    [],
+    [0],
+    [8, 3],
+    [7]
+];
+
+// Running the DFS
+const startNode = 0;
+const targetNode = 7;
+const path = depthFirstSearch(graph3, startNode, targetNode);
+
+console.log(`Path from node ${startNode} to node ${targetNode}:`, path);
