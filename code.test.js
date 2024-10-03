@@ -3,14 +3,20 @@ const jsc = require('jsverify');
 
 eval(fs.readFileSync('code.js')+'');
 
-const testSearch =
-    jsc.forall("array nat", function(arr) {
-        if(arr.length > 0) {
-            arr.sort(function(a, b) { return a - b; });
-            return binarySearch(arr, arr[0]) === 0;
-        } else {
-            return binarySearch(arr, "foo") === -1;
-        }
-    });
+// Running the DFS
+const startNode = 0;
+var targetNode = 7;
 
-jsc.assert(testSearch);
+function testSearch(theAdjList){
+  const findPath = depthFirstSearch(theAdjList, startNode, targetNode);
+  
+  if (findPath.length === 0 ){console.log("Zero");}
+  else if (findPath[findPath.length - 1] == targetNode)
+    console.log(`Test successful, Path from node ${startNode} to node ${targetNode}:`, findPath)
+  else if (findPath[findPath.length - 1] !== targetNode)
+    console.error(`Fail, no path found`);
+}
+
+testSearch(graph)
+testSearch(graph2)
+testSearch(graph3)
