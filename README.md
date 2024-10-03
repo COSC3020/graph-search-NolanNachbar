@@ -25,6 +25,35 @@ the function and run automatically when you commit through a GitHub action.
 
 What is the worst-case big $\Theta$ complexity of your implementation? Add your
 answer, including your reasoning, to this markdown file.
+Recall my code,
+```js
+function depthFirstSearch(graph, startNode, targetNode) { // note that graph will be an adjacency list
+    let visited = [] 
+    let path = []
+    
+    function depthFirstHelp(node){
+        if (visited.includes(node)) return false;
+        if (node === targetNode) {
+          path.push(node);
+          return true;
+        }
+        
+        visited.push(node);
+        path.push(node);
+        for(let i = 0; i < graph[node].length; i++){
+            if(depthFirstHelp(graph[node][i]))
+              return true;
+        }
+        
+        path.pop(); // pop it because the target wasn't found on it's path
+        return false;
+    }
+    
+    depthFirstHelp(startNode);
+    return path;
+}
+```
+
 
 ## Bonus
 
