@@ -25,6 +25,7 @@ the function and run automatically when you commit through a GitHub action.
 
 What is the worst-case big $\Theta$ complexity of your implementation? Add your
 answer, including your reasoning, to this markdown file.
+
 Recall my code,
 ```js
 function depthFirstSearch(graph, startNode, targetNode) { // note that graph will be an adjacency list
@@ -55,6 +56,13 @@ function depthFirstSearch(graph, startNode, targetNode) { // note that graph wil
 ```
 
 
+
 ## Bonus
 
 Implement and analyze breadth-first search.
+
+
+
+I looked at this to help me figure out how to go about doing it. I basically used it to create the outline of my code.
+https://github.com/COSC3020/graph-search-ZachRenz/pull/1/files
+
