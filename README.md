@@ -29,3 +29,35 @@ answer, including your reasoning, to this markdown file.
 ## Bonus
 
 Implement and analyze breadth-first search.
+
+I've created this code and added it to my code and testing files.
+```js
+function breadthFirstSearch(graph, startNode, targetNode) { // note that graph will be an adjacency list
+    let visited = [] 
+    let path = []
+    let queue = [startNode]
+
+    while (queue.length > 0){
+      let node = queue.shift();
+      
+      if (node === targetNode) {
+        path.push(node);
+        break;
+      }
+      
+      if (!visited.includes(node)){
+        visited.push(node);
+        path.push(node); 
+        
+        for (let i = 0; i < graph[node].length; i++) 
+          queue.unshift(graph[node][i]);
+      }
+      
+    }
+    
+    return path;
+}
+```
+
+When I was creating this I started with my code from the DFS and modified it. I used the slides and this to help me conceptualize it. 
+https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/#
