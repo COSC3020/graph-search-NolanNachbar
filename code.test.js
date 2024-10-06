@@ -7,7 +7,7 @@ const graph = [
     [3, 4, 2, 7],
     [0],
     [1, 4],
-    [2, 3, 6],
+    [2, 5, 6],
     [1, 5],
     [6],
     [],
@@ -58,16 +58,16 @@ DFStestSearch(graph)
 DFStestSearch(graph2)
 DFStestSearch(graph3)
 
-// function BFStestSearch(theAdjList){
-//   const findPath = breadthFirstSearch(theAdjList, startNode, targetNode);
+function BFStestSearch(theAdjList){
+  const findPath = breadthFirstSearch(theAdjList, startNode, targetNode);
   
-//   if (findPath.length === 0 ){console.log("Zero");}
-//   else if (findPath[findPath.length - 1] == targetNode)
-//     console.log(`BFS Test successful, Path from node ${startNode} to node ${targetNode}:`, findPath)
-//   else if (findPath[findPath.length - 1] !== targetNode)
-//     console.error(`BFS Fail, no path found`);
-// }
+  if (findPath.length === 0 ){console.log("Zero");}
+  else if (findPath[findPath.length - 1] == targetNode)
+    console.log(`BFS Test successful, Path from node ${startNode} to node ${targetNode}:`, findPath)
+  else if (findPath[findPath.length - 1] !== targetNode)
+    console.error(`BFS Fail, no path found`);
+}
 
-// BFStestSearch(graph)
-// BFStestSearch(graph2)
-// BFStestSearch(graph3)
+BFStestSearch(graph)
+BFStestSearch(graph2)
+BFStestSearch(graph3)
