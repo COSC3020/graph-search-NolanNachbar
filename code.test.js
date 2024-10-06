@@ -1,3 +1,8 @@
+const fs = require('fs');
+const jsc = require('jsverify');
+
+eval(fs.readFileSync('code.js')+'');
+
 const graph = [
     [3, 4, 2, 7],
     [0],
