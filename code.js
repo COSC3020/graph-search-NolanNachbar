@@ -23,3 +23,30 @@ function depthFirstSearch(graph, startNode, targetNode) { // note that graph wil
     depthFirstHelp(startNode);
     return path;
 }
+
+
+function breadthFirstSearch(graph, startNode, targetNode) { // note that graph will be an adjacency list
+    let visited = [] 
+    let path = []
+    let queue = [startNode]
+
+    while (queue.length > 0){
+      let node = queue.shift();
+      
+      if (node === targetNode) {
+        path.push(node);
+        break;
+      }
+      
+      if (!visited.includes(node)){
+        visited.push(node);
+        path.push(node); 
+        
+        for (let i = 0; i < graph[node].length; i++) 
+          queue.unshift(graph[node][i]);
+      }
+      
+    }
+    
+    return path;
+}
