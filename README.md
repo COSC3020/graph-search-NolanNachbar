@@ -90,7 +90,7 @@ function breadthFirstSearch(graph, startNode, targetNode) { // note that graph w
         path.push(node); 
         
         for (let i = 0; i < graph[node].length; i++) 
-          queue.unshift(graph[node][i]);
+          queue.push(graph[node][i]);
       }
       
     }
