@@ -46,44 +46,21 @@ const graph3 = [
 function arraysEqual(arr1, arr2) {
     return JSON.stringify(arr1) === JSON.stringify(arr2);
 }
-const testSearch1 = depthFirstSearch(graph, startNode, targetNode);
-if (arraysEqual(testSearch1, [0, 7])) {
-  console.log('DFS Test 1 successful');
-} else {
-  console.error(`DFS Test 1 Fail, ${testSearch1} != [ 0, 7 ]`); 
-}
 
-const testSearch2 = depthFirstSearch(graph2, startNode, targetNode);
-if (arraysEqual(testSearch2, [0, 2, 4, 6, 7])) {
-  console.log('DFS Test 2 successful');
-} else {
-  console.error(`DFS Test 2 Fail, ${testSearch2} != [ 0, 2, 4, 6, 7 ]`); 
-}
+const tests = [
+    { func: depthFirstSearch, graph: graph, result: [0, 7], name: 'DFS Test 1' },
+    { func: depthFirstSearch, graph: graph2, result: [0, 2, 4, 6, 7], name: 'DFS Test 2' },
+    { func: depthFirstSearch, graph: graph3, result: [0, 1, 3, 7], name: 'DFS Test 3' },
+    { func: breadthFirstSearch, graph: graph, result: [0, 7], name: 'BFS Test 1' },
+    { func: breadthFirstSearch, graph: graph2, result: [0, 2, 4, 6, 7], name: 'BFS Test 2' },
+    { func: breadthFirstSearch, graph: graph3, result: [0, 1, 3, 7], name: 'BFS Test 3' }
+];
 
-const testSearch3 = depthFirstSearch(graph3, startNode, targetNode);
-if (arraysEqual(testSearch3, [0, 1, 3, 7])) {
-  console.log('DFS Test 3 successful');
-} else {
-  console.error(`DFS Test 3 Fail, ${testSearch3} != [ 0, 1, 3, 7 ]`); 
-}
-
-const testSearch4 = breadthFirstSearch(graph, startNode, targetNode);
-if (arraysEqual(testSearch4, [0, 7])) {
-  console.log('BFS Test 4 successful');
-} else {
-  console.error(`BFS Test 4 Fail, ${testSearch4} != [ 0, 7 ]`); 
-}
-
-const testSearch5 = breadthFirstSearch(graph2, startNode, targetNode);
-if (arraysEqual(testSearch5, [0, 2, 4, 6, 7])) {
-  console.log('BFS Test 5 successful');
-} else {
-  console.error(`BFS Test 5 Fail, ${testSearch5} != [ 0, 2, 4, 6, 7 ]`); 
-}
-
-const testSearch6 = breadthFirstSearch(graph3, startNode, targetNode);
-if (arraysEqual(testSearch6, [0, 1, 3, 7])) {
-  console.log('BFS Test 6 successful');
-} else {
-  console.error(`BFS Test 6 Fail, ${testSearch6} != [ 0, 1, 3, 7 ]`); 
-}
+tests.forEach(test => {
+    const output = test.func(test.graph, startNode, targetNode);
+    if (arraysEqual(output, test.result)) {
+        console.log(`${test.name} successful`);
+    } else {
+        console.error(`${test.name} failed: ${output} != ${test.result}`);
+    }
+});
