@@ -1,3 +1,6 @@
+const fs = require('fs');
+const jsc = require('jsverify');
+eval(fs.readFileSync('code.js')+'');
 
 // Running the DFS
 const startNode = 0;
@@ -42,8 +45,7 @@ const graph3 = [
 ];
 
 
-const fs = require('fs');
-const jsc = require('jsverify');
+
 
 const testSearch1 = (depthFirstSearch(graph, startNode, targetNode) == [ 0, 7 ] )
 jsc.assert(testSearch1);
