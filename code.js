@@ -24,29 +24,36 @@ function depthFirstSearch(graph, startNode, targetNode) { // note that graph wil
     return path;
 }
 
-
 function breadthFirstSearch(graph, startNode, targetNode) { // note that graph will be an adjacency list
-    let visited = [] 
-    let path = []
-    let queue = [startNode]
+    let visited = [];
+    let parent = {};
+    let queue = [startNode];
 
-    while (queue.length > 0){
-      let node = queue.shift();
-      
-      if (node === targetNode) {
-        path.push(node);
-        break;
-      }
-      
-      if (!visited.includes(node)){
-        visited.push(node);
-        path.push(node); 
-        
-        for (let i = 0; i < graph[node].length; i++) 
-          queue.push(graph[node][i]);
-      }
-      
+    while (queue.length > 0) {
+        let node = queue.shift();
+
+        if (node === targetNode) {
+            let path = [];
+            let currentNode = targetNode;
+            while (currentNode !== undefined) {
+                path.unshift(currentNode);
+                currentNode = parent[currentNode];
+            }
+            return path;
+        }
+
+        if (!visited.includes(node)) {
+            visited.push(node);
+
+            for (let i = 0; i < graph[node].length; i++) {
+                const neighbor = graph[node][i];
+                if (!visited.includes(neighbor) && !queue.includes(neighbor)) {
+                    queue.push(neighbor);
+                    parent[neighbor] = node;
+                }
+            }
+        }
     }
-    
-    return path;
+
+    return [];
 }
