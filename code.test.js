@@ -44,29 +44,18 @@ const graph3 = [
 const startNode = 0;
 var targetNode = 7;
 
-function DFStestSearch(theAdjList){
-  const findPath = depthFirstSearch(theAdjList, startNode, targetNode);
-  
-  if (findPath.length === 0 ){console.log("Zero");}
-  else if (findPath[findPath.length - 1] == targetNode)
-    console.log(`DFS Test successful, Path from node ${startNode} to node ${targetNode}:`, findPath)
-  else if (findPath[findPath.length - 1] !== targetNode)
-    console.error(`DFS Fail, no path found`);
-}
 
-DFStestSearch(graph)
-DFStestSearch(graph2)
-DFStestSearch(graph3)
+test('Test depthFirstSearch function', () => {
+ expect(depthFirstSearch(graph, startNode, targetNode)).toEqual([ 0, 7 ]); 
+ expect(depthFirstSearch(graph2, startNode, targetNode)).toEqual([ 0, 2, 4, 6, 7 ]); 
+ expect(depthFirstSearch(graph3, startNode, targetNode)).toEqual( [ 0, 1, 3, 7 ]); 
+});
 
-function BFStestSearch(theAdjList){
-  const findPath = breadthFirstSearch(theAdjList, startNode, targetNode);
-  
-  if (findPath.length === 0 ){console.log("Zero");}
-  else if (findPath[findPath.length - 1] == targetNode)
-    console.log(`BFS Test successful, Path from node ${startNode} to node ${targetNode}:`, findPath)
-  else if (findPath[findPath.length - 1] !== targetNode)
-    console.error(`BFS Fail, no path found`);
-}
+test('Test breadthFirstSearch function', () => {
+ expect(breadthFirstSearch(graph, startNode, targetNode)).toEqual([ 0, 7 ]); 
+ expect(breadthFirstSearch(graph2, startNode, targetNode)).toEqual([ 0, 2, 4, 6, 7 ]); 
+ expect(breadthFirstSearch(graph3, startNode, targetNode)).toEqual( [ 0, 1, 3, 7 ]); 
+});
 
 BFStestSearch(graph)
 BFStestSearch(graph2)
