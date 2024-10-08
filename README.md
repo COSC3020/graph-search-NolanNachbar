@@ -73,29 +73,37 @@ Implement and analyze breadth-first search.
 I've created this code and added it to my code and testing files.
 ```js
 function breadthFirstSearch(graph, startNode, targetNode) { // note that graph will be an adjacency list
-    let visited = [] 
-    let path = []
-    let queue = [startNode]
+    let visited = [];
+    let parent = {};
+    let queue = [startNode];
 
-    while (queue.length > 0){
-      let node = queue.shift();
-      
-      if (node === targetNode) {
-        path.push(node);
-        break;
-      }
-      
-      if (!visited.includes(node)){
-        visited.push(node);
-        path.push(node); 
-        
-        for (let i = 0; i < graph[node].length; i++) 
-          queue.push(graph[node][i]);
-      }
-      
+    while (queue.length > 0) {
+        let node = queue.shift();
+
+        if (node === targetNode) {
+            let path = [];
+            let currentNode = targetNode;
+            while (currentNode !== undefined) {
+                path.unshift(currentNode);
+                currentNode = parent[currentNode];
+            }
+            return path;
+        }
+
+        if (!visited.includes(node)) {
+            visited.push(node);
+
+            for (let i = 0; i < graph[node].length; i++) {
+                const neighbor = graph[node][i];
+                if (!visited.includes(neighbor) && !queue.includes(neighbor)) {
+                    queue.push(neighbor);
+                    parent[neighbor] = node;
+                }
+            }
+        }
     }
-    
-    return path;
+
+    return [];
 }
 ```
 
@@ -106,5 +114,14 @@ https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/#
 
 I used this website to help with the syntax to compare arrays in js.
 https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
+
+I was struggling to write the test code so I looked at this and modelled mine after it. My original test code just checked whether the target was found or not. I also used similar neighbor logic for the breadth first search in order to return the path to the target. My original version didn't return the path.
+https://github.com/COSC3020/graph-search-Assel-Aljazwe
+
+I used this for help with the syntax to compare arrays.
+https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
+
+And this for help understanding breadth first search.
+https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
 
 I certify that I have listed all sources used to complete this exercise, including the use of any Large Language Models. All of the work is my own, except where stated otherwise. I am aware that plagiarism carries severe penalties and that if plagiarism is suspected, charges may be filed against me without prior notice.
