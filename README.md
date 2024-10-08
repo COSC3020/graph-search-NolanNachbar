@@ -104,4 +104,7 @@ Similar to before, the worst case would be when the target is the last node it c
 When I was creating this I started with my code from the DFS and modified it. I used the slides and this to help me conceptualize it. 
 https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/#
 
+I used this website to help with the syntax to compare arrays in js.
+https://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
+
 I certify that I have listed all sources used to complete this exercise, including the use of any Large Language Models. All of the work is my own, except where stated otherwise. I am aware that plagiarism carries severe penalties and that if plagiarism is suspected, charges may be filed against me without prior notice.
